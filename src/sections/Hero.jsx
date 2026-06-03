@@ -21,8 +21,8 @@ export default function Hero() {
   return (
     <section
       id="accueil"
-      className="relative w-full overflow-hidden" style={{ backgroundColor: '#FDFCF9' }}
-      style={{ minHeight: '100vh' }}
+      className="relative w-full overflow-hidden"
+      style={{ backgroundColor: '#FDFCF9', minHeight: '100vh' }}
     >
 
       {/* ── Blob vert sauge derrière la photo ── */}

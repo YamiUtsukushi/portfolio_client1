@@ -1,28 +1,28 @@
 import { useState } from 'react'
-import { Mail, Phone, MapPin, Car, Send, Clock, Zap, MessageCircle } from 'lucide-react'
+import { Mail, Phone, MapPin, Car, Send, Clock, Zap, MessageCircle, Users } from 'lucide-react'
 
 const COORDS = [
   { icon: Mail,   label: 'Email',      value: 'davisen.ellepen.pro@gmail.com' },
   { icon: Phone,  label: 'Téléphone',  value: '06 52 09 88 19' },
   { icon: MapPin, label: 'Localisation', value: 'Basé à Neuilly-sur-Seine' },
-  { icon: Car,    label: 'Permis',     value: 'Permis B, Neuilly-sur-Seine' },
+  { icon: Car,    label: 'Permis',     value: 'Permis B' },
 ]
 
 const DISPOS = [
   {
-    icon: Zap,
-    title: 'Je suis disponible et réactive',
-    desc: 'Ouverte à de nouvelles missions et collaborations.',
-  },
-  {
     icon: Clock,
-    title: 'Réponse rapide garantie',
-    desc: 'Retour sous 24h pour chaque prise de contact.',
+    title: 'Je suis disponible pour échanger',
+    desc: 'du lundi au vendredi, de 9h à 19h.',
   },
   {
-    icon: MessageCircle,
-    title: 'Ouvert à tout projet concret',
-    desc: 'Marketing, coordination, stratégie digitale et plus encore.',
+    icon: Zap,
+    title: 'Réponse rapide garantie',
+    desc: "Je m'engage à vous répondre sous 48h maximum.",
+  },
+  {
+    icon: Users,
+    title: 'Ouvert à tous types de projets',
+    desc: 'Collaboration, CDI, CDD, freelance ou mission ponctuelle.',
   },
 ]
 
@@ -190,20 +190,45 @@ export default function Contact() {
         </div>
 
         {/* ══ Bannière disponibilité ══ */}
-        <div className="rounded-3xl p-6 grid grid-cols-3 divide-x"
-          style={{ backgroundColor: '#F5F4EE', border: '1px solid #ede7d5', borderColor: '#e0ddd6' }}>
-          {DISPOS.map(({ icon: Icon, title, desc }) => (
-            <div key={title} className="flex items-start gap-4 px-6 first:pl-0 last:pr-0">
-              <div className="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0"
-                style={{ backgroundColor: '#fff' }}>
-                <Icon size={18} style={{ color: '#1a4d2e' }} strokeWidth={1.5} />
+        <div className="rounded-3xl p-6"
+          style={{ backgroundColor: '#F5F4EE', border: '1px solid #e0ddd6' }}>
+          {/* Titre + ligne */}
+          <h3 className="text-lg font-bold mb-1" style={{ color: '#1a4d2e' }}>
+            Disponibilité &amp; réactivité
+          </h3>
+          <hr className="mb-5" style={{ borderColor: '#1a4d2e', width: '10%' }} />
+
+          {/* Colonnes */}
+          <div className="grid grid-cols-4 divide-x" style={{ divideColor: '#e0ddd6' }}>
+            {DISPOS.map(({ icon: Icon, title, desc }) => (
+              <div key={title} className="flex items-start gap-3 px-5 first:pl-0">
+                <div className="w-9 h-9 rounded-xl flex items-center justify-center flex-shrink-0"
+                  style={{ backgroundColor: '#fff', border: '1px solid #e0ddd6' }}>
+                  <Icon size={16} style={{ color: '#1a4d2e' }} strokeWidth={1.5} />
+                </div>
+                <div>
+                  <p className="font-bold text-[13px] leading-snug" style={{ color: '#111' }}>{title}</p>
+                  <p className="text-[12px] leading-relaxed mt-0.5" style={{ color: '#555' }}>{desc}</p>
+                </div>
               </div>
-              <div>
-                <p className="font-bold text-[13px] text-black leading-snug">{title}</p>
-                <p className="text-[12px] text-black leading-relaxed mt-1">{desc}</p>
+            ))}
+
+            {/* Bloc citation */}
+            <div className="px-5 flex flex-col justify-center">
+              <div className="flex items-start gap-2">
+                <span className="text-4xl font-serif leading-none" style={{ color: '#1a4d2e' }}>"</span>
+                <p className="text-[13px] leading-snug" style={{ color: '#111' }}>
+                  Chaque projet commence<br />par une conversation.
+                </p>
               </div>
+              <p className="mt-1 text-[13px]" style={{ color: '#111' }}>
+                Contactez-moi,{' '}
+                <span className="italic" style={{ fontFamily: 'Dancing Script, cursive', fontSize: '16px', color: '#1a4d2e' }}>
+                  parlons-en !
+                </span>
+              </p>
             </div>
-          ))}
+          </div>
         </div>
 
       </div>

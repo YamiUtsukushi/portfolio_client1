@@ -68,13 +68,6 @@ export default function Header() {
           })}
         </nav>
 
-        {/* Bouton Me contacter */}
-        <button
-          onClick={() => scrollTo('contact')}
-          className="hidden md:flex items-center px-6 py-2.5 rounded-2xl bg-sapin text-white text-[15px] font-semibold hover:bg-sapin-700 active:scale-95 transition-all"
-        >
-          Me contacter
-        </button>
 
         {/* Burger mobile */}
         <button className="md:hidden flex flex-col gap-1.5 p-2" aria-label="Menu">

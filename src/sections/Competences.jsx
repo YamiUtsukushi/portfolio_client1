@@ -63,8 +63,7 @@ function GraphIllustration() {
 function OutilCard({ icon: Icon, title, text }) {
   return (
     <div className="bg-white rounded-2xl flex items-center gap-4 p-4"
-      style={{ border: '1px solid #ede7d5', boxShadow: '0 4px 24px 0 rgba(26,77,46,0.07)' }}
-      style={{ border: '1px solid #ede7d5' }}>
+      style={{ border: '1px solid #ede7d5', boxShadow: '0 4px 24px 0 rgba(26,77,46,0.07)' }}>
       <div className="w-14 h-14 rounded-2xl flex items-center justify-center flex-shrink-0"
         style={{ backgroundColor: '#F2F1E6' }}>
         <Icon size={28} style={{ color: '#1a4d2e' }} strokeWidth={1.5} />
