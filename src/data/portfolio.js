@@ -1,0 +1,155 @@
+export const NAV_LINKS = [
+  { id: 'accueil',      label: 'Accueil' },
+  { id: 'apropos',      label: 'À propos' },
+  { id: 'projets',      label: 'Projets' },
+  { id: 'competences',  label: 'Compétences' },
+  { id: 'experiences',  label: 'Expériences' },
+  { id: 'contact',      label: 'Contact' },
+]
+
+export const COMPETENCES_CLES = [
+  { label: 'Marketing digital',    icon: 'TrendingUp' },
+  { label: 'Gestion de projet',    icon: 'ClipboardList' },
+  { label: 'Analyse de données',   icon: 'BarChart2' },
+  { label: 'Design & contenu',     icon: 'Palette' },
+]
+
+export const PROJETS = [
+  {
+    id: 'sneakers-shop',
+    title: 'Sneakers Shop React',
+    category: 'Développement Web',
+    description: "Application e-commerce complète avec panier, filtres et paiement intégré.",
+    tags: ['React', 'Tailwind', 'Firebase'],
+    status: 'deployed',
+    github: '#',
+    live: '#',
+    initiale: 'S',
+    color: 'bg-sapin-DEFAULT',
+  },
+  {
+    id: 'machine-learning',
+    title: 'Machine Learning & Deep Learning',
+    category: 'Data Science',
+    description: "Modèles de classification et prédiction sur datasets réels.",
+    tags: ['Python', 'Scikit-learn', 'TensorFlow'],
+    status: 'deployed',
+    github: '#',
+    live: null,
+    initiale: 'M',
+    color: 'bg-sauge-DEFAULT',
+  },
+  {
+    id: 'shopify-theme',
+    title: 'Shopify Theme — GINightClu12',
+    category: 'E-commerce',
+    description: "Thème Shopify custom pour une marque lifestyle premium.",
+    tags: ['Liquid', 'Shopify', 'CSS'],
+    status: 'deployed',
+    github: '#',
+    live: '#',
+    initiale: 'ST',
+    color: 'bg-sapin-700',
+  },
+  {
+    id: 'web-scraping',
+    title: 'Web Scraping & Analyse de ventes',
+    category: 'Data',
+    description: "Extraction et analyse automatisée de données concurrentielles.",
+    tags: ['Python', 'BeautifulSoup', 'Pandas'],
+    status: 'deployed',
+    github: '#',
+    live: null,
+    initiale: 'WS',
+    color: 'bg-sauge-600',
+  },
+  {
+    id: 'guess-the-code',
+    title: 'Guess The Code',
+    category: 'Jeu Web',
+    description: "Jeu de déduction de code en React avec animations.",
+    tags: ['React', 'Framer Motion'],
+    status: 'in_progress',
+    github: '#',
+    live: '#',
+    initiale: 'G',
+    color: 'bg-sapin-600',
+  },
+  {
+    id: 'tic-tac-toe',
+    title: 'Tic-Tac-Toe',
+    category: 'Jeu Web',
+    description: "Jeu du morpion multijoueur local avec historique des coups.",
+    tags: ['React', 'Hooks'],
+    status: 'deployed',
+    github: '#',
+    live: '#',
+    initiale: 'T',
+    color: 'bg-sapin-500',
+  },
+]
+
+export const EXPERIENCES = [
+  {
+    id: 1,
+    entreprise: 'Agence digitale XYZ',
+    logo: null,
+    poste: 'Chargé de marketing digital',
+    contrat: 'Alternance',
+    lieu: 'Paris, Île-de-France',
+    date: '2023 — 2024',
+    missions: [
+      "Pilotage des campagnes SEA (Google Ads, Meta Ads) avec un budget mensuel de 15k€",
+      "Création et gestion des contenus réseaux sociaux (Instagram, LinkedIn, TikTok)",
+      "Analyse des performances via Google Analytics 4 et production de rapports mensuels",
+      "Coordination avec les équipes créatives pour la production de supports de communication",
+    ],
+  },
+  {
+    id: 2,
+    entreprise: 'StartUp SaaS — TechVision',
+    logo: null,
+    poste: 'Chef de projet marketing',
+    contrat: 'CDD',
+    lieu: 'Neuilly-sur-Seine, 92',
+    date: '2022 — 2023',
+    missions: [
+      "Lancement de 3 campagnes d'acquisition avec un CPA réduit de 30%",
+      "Gestion de la roadmap produit en collaboration avec les équipes tech",
+      "Animation d'ateliers de co-création avec les utilisateurs finaux",
+    ],
+  },
+  {
+    id: 3,
+    entreprise: 'Freelance',
+    logo: null,
+    poste: 'Consultant en stratégie digitale',
+    contrat: 'Freelance',
+    lieu: 'Remote',
+    date: '2021 — 2022',
+    missions: [
+      "Audit et refonte de la stratégie digitale de 5 PME",
+      "Mise en place d'outils CRM (HubSpot, Notion) pour 3 clients",
+      "Formation des équipes internes aux bonnes pratiques SEO et social media",
+    ],
+  },
+]
+
+export const OUTILS = [
+  {
+    categorie: 'Outils analytiques',
+    items: ['Google Analytics 4', 'Looker Studio', 'Hotjar', 'Semrush', 'Ahrefs'],
+  },
+  {
+    categorie: 'CRM & CMS',
+    items: ['HubSpot', 'Salesforce', 'WordPress', 'Webflow', 'Shopify'],
+  },
+  {
+    categorie: 'Design',
+    items: ['Figma', 'Adobe XD', 'Canva', 'Photoshop', 'Illustrator'],
+  },
+  {
+    categorie: 'Dev & Data',
+    items: ['React', 'Python', 'Tailwind CSS', 'SQL', 'Power BI'],
+  },
+]
