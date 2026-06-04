@@ -210,52 +210,6 @@ export default function Projets() {
           {PROJETS.map(p => <CarteProjet key={p.id} {...p} />)}
         </div>
 
-        {/* ── Bannière CTA ── */}
-        <div className="rounded-3xl flex items-center justify-between gap-4 overflow-hidden"
-          style={{ backgroundColor: '#F5F4EE', border: '1px solid #ede7d5' }}>
-
-          {/* Illustration gauche */}
-          <div className="flex-shrink-0" style={{ width: '130px', height: '88px' }}>
-            <svg viewBox="0 0 130 88" xmlns="http://www.w3.org/2000/svg" width="130" height="88">
-              <path d="M 0 88 Q 0 8 75 8 L 75 88 Z" fill="#1a4d2e" />
-              <ellipse cx="50" cy="70" rx="30" ry="26" fill="#6b9e7e" opacity="0.7" />
-              {Array.from({ length: 4 }).map((_, r) =>
-                Array.from({ length: 4 }).map((_, c) => (
-                  <circle key={`${r}-${c}`} cx={82 + c * 11} cy={12 + r * 11} r="1.8"
-                    fill="#6b9e7e" opacity="0.4" />
-                ))
-              )}
-            </svg>
-          </div>
-
-          {/* Barre verte verticale */}
-          <div className="flex-shrink-0 w-1 rounded-full" style={{ backgroundColor: '#1a4d2e', height: '56px' }} />
-
-          {/* Texte */}
-          <div className="flex flex-col gap-1.5 flex-1 py-6">
-            <p className="font-extrabold text-[1.1rem] leading-snug" style={{ color: '#1a4d2e' }}>
-              Un projet en tête ?
-            </p>
-            <p className="text-black text-[13px] leading-relaxed">
-              Je suis toujours ouvert à de nouvelles idées et collaborations.<br />
-              Discutons ensemble et voyons comment je peux vous accompagner.
-            </p>
-          </div>
-
-          {/* Bouton */}
-          <div className="flex-shrink-0" style={{ paddingRight: '6.5rem' }}>
-            <button
-              onClick={scrollToContact}
-              className="inline-flex items-center gap-2 px-6 py-3 rounded-2xl font-semibold text-[14px] text-white active:scale-95 transition-all"
-              style={{ backgroundColor: '#1a4d2e' }}
-              onMouseEnter={e => e.currentTarget.style.backgroundColor = '#174018'}
-              onMouseLeave={e => e.currentTarget.style.backgroundColor = '#1a4d2e'}
-            >
-              <Send size={14} />
-              Me contacter
-            </button>
-          </div>
-        </div>
 
       </div>
     </section>

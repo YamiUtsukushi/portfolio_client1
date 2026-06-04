@@ -12,12 +12,12 @@ const DISPOS = [
   {
     icon: Clock,
     title: 'Je suis disponible pour échanger',
-    desc: 'du lundi au vendredi, de 9h à 19h.',
+    desc: 'du lundi au Dimanche, à partir de 9h.',
   },
   {
     icon: Zap,
     title: 'Réponse rapide garantie',
-    desc: "Je m'engage à vous répondre sous 48h maximum.",
+    desc: "Je m'engage à vous répondre sous 24h maximum.",
   },
   {
     icon: Users,
@@ -28,8 +28,29 @@ const DISPOS = [
 
 export default function Contact() {
   const [form, setForm] = useState({ nom: '', prenom: '', email: '', telephone: '', message: '' })
+  const [status, setStatus] = useState(null) // null | 'loading' | 'success' | 'error'
 
   const handleChange = (e) => setForm({ ...form, [e.target.name]: e.target.value })
+
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+    setStatus('loading')
+    try {
+      const res = await fetch('/.netlify/functions/send-email', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(form),
+      })
+      if (res.ok) {
+        setStatus('success')
+        setForm({ nom: '', prenom: '', email: '', telephone: '', message: '' })
+      } else {
+        setStatus('error')
+      }
+    } catch {
+      setStatus('error')
+    }
+  }
 
   const inputStyle = {
     width: '100%',
@@ -100,12 +121,25 @@ export default function Contact() {
 
           {/* ── Colonne droite — Formulaire ── */}
           <div className="col-span-7">
-            <div className="bg-white rounded-3xl p-8 flex flex-col gap-5"
-              style={{ border: '1px solid #ede7d5', boxShadow: '0 4px 24px 0 rgba(26,77,46,0.07)' }}>
+            <form className="bg-white rounded-3xl p-8 flex flex-col gap-5"
+              style={{ border: '1px solid #ede7d5', boxShadow: '0 4px 24px 0 rgba(26,77,46,0.07)' }}
+              onSubmit={handleSubmit}>
 
               <p className="font-extrabold text-black text-[1.125rem]">
                 Envoyez-moi un message
               </p>
+
+              {/* Feedback */}
+              {status === 'success' && (
+                <div className="rounded-2xl px-4 py-3 text-[13px] font-semibold" style={{ backgroundColor: '#e6f4ec', color: '#1a6e3c' }}>
+                  ✅ Message envoyé avec succès ! Je vous répondrai dans les meilleurs délais.
+                </div>
+              )}
+              {status === 'error' && (
+                <div className="rounded-2xl px-4 py-3 text-[13px] font-semibold" style={{ backgroundColor: '#fdecea', color: '#c0392b' }}>
+                  ❌ Une erreur est survenue. Veuillez réessayer ou m'écrire directement par email.
+                </div>
+              )}
 
               {/* Nom + Prénom */}
               <div className="grid grid-cols-2 gap-4">
@@ -171,13 +205,15 @@ export default function Contact() {
 
               {/* Bouton */}
               <button
+                type="submit"
+                disabled={status === 'loading'}
                 className="w-full flex items-center justify-center gap-2 py-4 rounded-2xl font-semibold text-white text-[15px] active:scale-95 transition-all"
-                style={{ backgroundColor: '#1a4d2e' }}
-                onMouseEnter={e => e.currentTarget.style.backgroundColor = '#174018'}
-                onMouseLeave={e => e.currentTarget.style.backgroundColor = '#1a4d2e'}
+                style={{ backgroundColor: status === 'loading' ? '#6b9e7e' : '#1a4d2e', cursor: status === 'loading' ? 'not-allowed' : 'pointer' }}
+                onMouseEnter={e => { if (status !== 'loading') e.currentTarget.style.backgroundColor = '#174018' }}
+                onMouseLeave={e => { if (status !== 'loading') e.currentTarget.style.backgroundColor = '#1a4d2e' }}
               >
-                Envoyer le message
-                <Send size={16} />
+                {status === 'loading' ? 'Envoi en cours...' : 'Envoyer le message'}
+                {status !== 'loading' && <Send size={16} />}
               </button>
 
               {/* RGPD */}
@@ -185,7 +221,7 @@ export default function Contact() {
                 Vos données sont utilisées uniquement pour répondre à votre message
                 et ne seront jamais partagées avec des tiers.
               </p>
-            </div>
+            </form>
           </div>
         </div>
 

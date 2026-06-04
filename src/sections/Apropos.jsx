@@ -286,10 +286,10 @@ export default function Apropos() {
               Ce qui me définit
             </p>
             <div className="grid grid-cols-4 divide-x" style={{ borderColor: '#ede7d5' }}>
-              <DefinitCol icon={ClipboardList} title="Gestion de projet"      desc="Organiser, coordonner, faire avancer" />
-              <DefinitCol icon={Users}         title="Coordination d'équipes" desc="Collaborer et relier les actions" />
-              <DefinitCol icon={Headphones}    title="Expérience client"      desc="Écoute, qualité de service, fidélisation" />
-              <DefinitCol icon={BarChart2}     title="Analyse & performance"  desc="Suivre les résultats et améliorer" />
+              <DefinitCol icon={ClipboardList} title="Gestion De Projet"      desc="Organiser, coordonner, faire avancer" />
+              <DefinitCol icon={Users}         title="Coordination D'Équipes" desc="Collaborer et relier les actions" />
+              <DefinitCol icon={Headphones}    title="Expérience Client"      desc="Écoute, qualité de service, fidélisation" />
+              <DefinitCol icon={BarChart2}     title="Analyse & Performance"  desc="Suivre les résultats et améliorer" />
             </div>
           </div>
 

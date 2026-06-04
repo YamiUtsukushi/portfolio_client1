@@ -8,10 +8,10 @@ import {
 } from 'lucide-react'
 
 const COMPETENCES = [
-  { label: 'Marketing\ndigital',   Icon: TrendingUp   },
-  { label: 'Gestion\nde projet',   Icon: ClipboardList },
-  { label: 'Analyse de\ndonnées',  Icon: BarChart2     },
-  { label: 'Design &\ncontenu',    Icon: PenLine       },
+  { label: 'Marketing\nDigital',   Icon: TrendingUp   },
+  { label: 'Gestion\nDe Projet',   Icon: ClipboardList },
+  { label: 'Analyse De\nDonnées',  Icon: BarChart2     },
+  { label: 'Design &\nContenu',    Icon: PenLine       },
 ]
 
 export default function Hero() {
@@ -55,7 +55,7 @@ export default function Hero() {
       <svg
         aria-hidden="true"
         className="absolute opacity-25 pointer-events-none"
-        style={{ top: '80px', left: '12px', zIndex: 0 }}
+        style={{ top: '80px', left: '300px', zIndex: 0 }}
         width="160" height="160" viewBox="0 0 160 160"
       >
         {Array.from({ length: 7 }).map((_, r) =>
@@ -74,11 +74,12 @@ export default function Hero() {
           width: '58%',
           height: '100%',
           zIndex: 1,
+          overflow: 'hidden',
         }}
       >
         <img
           src="/assets/photo-davisen.png"
-          alt="Davisen Elaeon"
+          alt="Davisen Ellapen"
           style={{
             width: '100%',
             height: '100%',
@@ -86,7 +87,10 @@ export default function Hero() {
             objectPosition: 'center top',
             display: 'block',
             imageRendering: 'auto',
+            transition: 'transform 0.5s ease',
           }}
+          onMouseEnter={e => e.currentTarget.style.transform = 'scale(1.05)'}
+          onMouseLeave={e => e.currentTarget.style.transform = 'scale(1)'}
         />
       </div>
 

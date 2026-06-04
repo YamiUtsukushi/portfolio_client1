@@ -115,7 +115,7 @@ function CompCol({ icon: Icon, title, items, summary }) {
 const OUTILS = [
   {
     icon: BarChart,
-    title: 'Outils analytiques',
+    title: 'Outils Analytiques',
     text: 'Pack Office, Power BI, Excel VBA, Dataiku (Certification Nano), Google Analytics, Google Search Console',
   },
   {
@@ -125,22 +125,22 @@ const OUTILS = [
   },
   {
     icon: PenTool,
-    title: 'Design & création',
+    title: 'Design & Création',
     text: 'Suite Adobe : Photoshop, Illustrator, InDesign, Premiere Pro, After Effects, Lightroom, Acrobat Pro, Canva, Figma, CapCut',
   },
   {
     icon: Target,
-    title: 'Marketing digital & campagnes',
+    title: 'Marketing Digital & Campagnes',
     text: 'Metx Office, Power BI, Google Ads, Meta Ads, TikTok Ads, LinkedIn Ads, Mailchimp, Brevo',
   },
   {
     icon: Briefcase,
-    title: 'Bureautique & collaboration',
+    title: 'Bureautique & Collaboration',
     text: 'Pack Office, Excel, PowerPoint, Word, Outlook, Google Workspace, Teams, Slack, SharePoint, OneDrive, Trello',
   },
   {
     icon: Bot,
-    title: 'SEO, IA & automatisation',
+    title: 'SEO, IA & Automatisation',
     text: 'Semrush, Yoast, Google Trends, ChatGPT, Gemini, Claude, Copilot',
   },
 ]
@@ -148,7 +148,7 @@ const OUTILS = [
 const COMPETENCES_COLS = [
   {
     icon: Target,
-    title: 'Marketing & stratégie',
+    title: 'Marketing & Stratégie',
     items: [
       'Stratégie & analyse',
       'Marketing digital & communication multicanale',
@@ -161,7 +161,7 @@ const COMPETENCES_COLS = [
   },
   {
     icon: Users,
-    title: 'Management & pilotage opérationnel',
+    title: 'Management & Pilotage Opérationnel',
     items: [
       'Pilotage opérationnel & analyse',
       'Management d\'équipe & coordination',
@@ -173,7 +173,7 @@ const COMPETENCES_COLS = [
   },
   {
     icon: RefreshCw,
-    title: 'Coordination, flux & amélioration continue',
+    title: 'Coordination, Flux & Amélioration Continue',
     items: [
       'Gestion des stocks & approvisionnement',
       'Coordination opérationnelle',
@@ -297,7 +297,7 @@ export default function Competences() {
         <div className="mb-10">
           <div className="flex items-center gap-2 mb-5">
             <span className="w-6 h-0.5 rounded" style={{ backgroundColor: '#1a4d2e' }} />
-            <p className="text-[15px] font-extrabold" style={{ color: '#1a4d2e' }}>Logiciels & outils</p>
+            <p className="text-[15px] font-extrabold" style={{ color: '#1a4d2e' }}>Logiciels & Outils</p>
           </div>
           <div className="grid grid-cols-3 gap-4">
             {OUTILS.map(o => <OutilCard key={o.title} {...o} />)}
@@ -308,7 +308,7 @@ export default function Competences() {
         <div className="mb-12">
           <div className="flex items-center gap-2 mb-5">
             <span className="w-6 h-0.5 rounded" style={{ backgroundColor: '#1a4d2e' }} />
-            <p className="text-[15px] font-extrabold" style={{ color: '#1a4d2e' }}>Compétences clés</p>
+            <p className="text-[15px] font-extrabold" style={{ color: '#1a4d2e' }}>Compétences Clés</p>
           </div>
           <div className="grid grid-cols-3 gap-4 items-stretch">
             {COMPETENCES_COLS.map(c => <CompCol key={c.title} {...c} />)}
