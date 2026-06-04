@@ -3,14 +3,17 @@ export async function handler(event) {
     return { statusCode: 405, body: 'Method Not Allowed' }
   }
 
+  try {
+
+  if (!process.env.BREVO_API_KEY) {
+    console.error('BREVO_API_KEY manquante')
+    return { statusCode: 500, body: JSON.stringify({ error: 'BREVO_API_KEY manquante' }) }
+  }
+
   const { nom, prenom, email, telephone, message } = JSON.parse(event.body)
 
   if (!nom || !email || !message) {
     return { statusCode: 400, body: JSON.stringify({ error: 'Champs requis manquants.' }) }
-  }
-
-  if (!process.env.BREVO_API_KEY) {
-    return { statusCode: 500, body: JSON.stringify({ error: 'BREVO_API_KEY manquante' }) }
   }
 
   const response = await fetch('https://api.brevo.com/v3/smtp/email', {
@@ -53,5 +56,10 @@ export async function handler(event) {
   return {
     statusCode: 200,
     body: JSON.stringify({ success: true }),
+  }
+
+  } catch (err) {
+    console.error('Erreur fonction send-email:', err.message, err.stack)
+    return { statusCode: 500, body: JSON.stringify({ error: err.message }) }
   }
 }
