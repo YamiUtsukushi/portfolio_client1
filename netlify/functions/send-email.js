@@ -9,6 +9,10 @@ export async function handler(event) {
     return { statusCode: 400, body: JSON.stringify({ error: 'Champs requis manquants.' }) }
   }
 
+  if (!process.env.BREVO_API_KEY) {
+    return { statusCode: 500, body: JSON.stringify({ error: 'BREVO_API_KEY manquante' }) }
+  }
+
   const response = await fetch('https://api.brevo.com/v3/smtp/email', {
     method: 'POST',
     headers: {
@@ -18,10 +22,10 @@ export async function handler(event) {
     },
     body: JSON.stringify({
       sender: {
-        name: `${prenom} ${nom}`,
-        email: 'noreply@davisen-ellapen.netlify.app',
+        name: 'Portfolio Davisen Ellapen',
+        email: 'davisen.ellapen.pro@gmail.com',
       },
-      to: [{ email: 'davisen.ellepen.pro@gmail.com', name: 'Davisen Ellapen' }],
+      to: [{ email: 'davisen.ellapen.pro@gmail.com', name: 'Davisen Ellapen' }],
       replyTo: { email, name: `${prenom} ${nom}` },
       subject: `📩 Nouveau message de ${prenom} ${nom}`,
       htmlContent: `
@@ -41,7 +45,8 @@ export async function handler(event) {
   })
 
   if (!response.ok) {
-    const error = await response.text()
+    const error = await response.json().catch(() => response.text())
+    console.error('Brevo error:', JSON.stringify(error))
     return { statusCode: 500, body: JSON.stringify({ error }) }
   }
 

@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { Mail, Phone, MapPin, Car, Send, Clock, Zap, MessageCircle, Users } from 'lucide-react'
 
 const COORDS = [
-  { icon: Mail,   label: 'Email',      value: 'davisen.ellepen.pro@gmail.com' },
+  { icon: Mail,   label: 'Email',      value: 'davisen.ellapen.pro@gmail.com' },
   { icon: Phone,  label: 'Téléphone',  value: '06 52 09 88 19' },
   { icon: MapPin, label: 'Localisation', value: 'Basé à Neuilly-sur-Seine' },
   { icon: Car,    label: 'Permis',     value: 'Permis B' },
