@@ -24,6 +24,9 @@ Portfolio personnel développé en React & Tailwind CSS, sous forme de Single Pa
 
 ```
 portfolio_dav/
+├── netlify/
+│   └── functions/
+│       └── send-email.js        # Netlify Function — envoi d'email via Brevo
 ├── public/
 │   ├── assets/                  # Images, logos, PDFs des projets
 │   └── favicon.svg
@@ -43,6 +46,7 @@ portfolio_dav/
 │   │   └── Contact.jsx          # Section Contact (formulaire + bannière)
 │   ├── App.jsx                  # Routing principal (BrowserRouter)
 │   └── main.jsx                 # Point d'entrée React
+├── netlify.toml                 # Config Netlify (build, fonctions, redirects SPA)
 ├── tailwind.config.js           # Charte graphique (couleurs, polices, ombres)
 ├── vite.config.js
 └── package.json
@@ -69,6 +73,12 @@ portfolio_dav/
 - Ombres douces (`shadow-card`)
 - Cards blanches sur fond crème
 
+### Responsive
+Toutes les sections sont adaptées pour **mobile et tablette** via les classes responsives Tailwind :
+- `< 768px` — mobile : layouts en colonne, photo Hero en fond plein écran, cartes compactes
+- `768px – 1023px` — tablette : grilles 2 colonnes, éléments redimensionnés
+- `≥ 1024px` — desktop : design original complet
+
 ---
 
 ## 📄 Sections
@@ -91,6 +101,7 @@ Présentation, donut chart "+15 projets menés", badges d'information, philosoph
 - Layout 2 colonnes : image du projet + espace texte
 - 3 blocs : Objectifs / Actions réalisées / Résultats attendus
 - Section fichier téléchargeable (PDF) ou lien du site
+- Navigation prev/next entre projets (boutons + **swipe tactile** sur mobile)
 - Bannière CTA
 
 ### 5. Compétences
@@ -107,6 +118,27 @@ Présentation, donut chart "+15 projets menés", badges d'information, philosoph
 - Formulaire (Nom, Prénom, Email, Téléphone, Message)
 - Coordonnées (Email, Téléphone, Localisation, Permis)
 - Bannière "Disponibilité & réactivité" avec 3 engagements + citation cursive
+
+---
+
+## ✉️ Formulaire de contact (Netlify Function + Brevo)
+
+Le formulaire de contact utilise une **Netlify Function** (`netlify/functions/send-email.js`) qui appelle l'API transactionnelle **Brevo** pour envoyer les messages.
+
+### Variables d'environnement requises
+
+| Variable | Description |
+|---|---|
+| `BREVO_API_KEY` | Clé API Brevo (format `xkeysib-...`) — à créer dans *Brevo → Profil → SMTP & API → API Keys* |
+
+**En local**, créer un fichier `.env` à la racine :
+```env
+BREVO_API_KEY=xkeysib-votre-cle-api
+```
+
+**Sur Netlify**, ajouter la variable dans *Site settings → Environment variables*, puis redéployer.
+
+> ⚠️ Ne pas confondre avec les identifiants SMTP (`xsmtpsib-...`) — l'API REST requiert une clé API (`xkeysib-...`).
 
 ---
 
@@ -205,10 +237,7 @@ Le site est déployé sur **Netlify** avec déploiement continu depuis GitHub.
 
 **URL de production :** [https://davisen-ellapen.netlify.app](https://davisen-ellapen.netlify.app)
 
-> ⚠️ React Router nécessite un fichier `_redirects` dans `public/` pour que les routes fonctionnent sur Netlify :
-> ```
-> /*  /index.html  200
-> ```
+> ℹ️ La configuration Netlify est centralisée dans `netlify.toml` (build, fonctions serverless et redirect SPA). Aucun fichier `_redirects` séparé n'est nécessaire.
 
 ---
 
