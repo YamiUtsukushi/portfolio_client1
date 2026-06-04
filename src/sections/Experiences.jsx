@@ -9,6 +9,7 @@ const EXPERIENCES = [
     entreprise: 'Association Toutes en Santé',
     lieu: 'Paris',
     date: '2023 – 2024',
+    logoSrc: '/assets/logo-toutes-en-sante.png',
     missions: [
       'Déploiement d\'actions marketing : campagnes, contenus et événements.',
       'Coordination de projets transverses avec la direction et les équipes internes.',
@@ -42,6 +43,7 @@ const EXPERIENCES = [
     entreprise: 'Le Frozier',
     lieu: 'La Garenne-Colombes',
     date: '2021 – 2022',
+    logoSrc: '/assets/logo-frozier.png',
     missions: [
       'Mise en place d\'opérations commerciales et promotionnelles pour stimuler les ventes.',
       'Gestion des réseaux sociaux et création de contenus.',
@@ -58,6 +60,7 @@ const EXPERIENCES = [
     entreprise: 'Comptoir Européen d\'Électricité – CEE',
     lieu: 'Le Bourget',
     date: '2020',
+    logoSrc: '/assets/logo-cee.png',
     missions: [
       'Enrichissement d\'une base de données clients qualifiée.',
       'Identification d\'opportunités commerciales et développement de nouveaux contacts.',
@@ -73,6 +76,7 @@ const EXPERIENCES = [
     entreprise: 'IDF Autos',
     lieu: 'Île de la Réunion',
     date: '2019',
+    logoSrc: '/assets/logo-idf-autos.png',
     missions: [
       'Développement de l\'activité commerciale sur un nouveau secteur géographique.',
       'Identification des besoins clients et accompagnement dans le processus d\'achat.',
@@ -200,10 +204,10 @@ export default function Experiences() {
               style={{ border: '1px solid #ede7d5', boxShadow: '0 4px 24px 0 rgba(26,77,46,0.07)' }}>
               <div className="grid grid-cols-4 divide-x" style={{ borderColor: '#ede7d5' }}>
                 {[
-                  { Icon: Briefcase,  value: '5',               label: 'expériences' },
-                  { Icon: TrendingUp, value: 'marketing',       label: 'au cœur des missions' },
-                  { Icon: Users,      value: 'coordination',    label: 'de projets et d\'équipes' },
-                  { Icon: Handshake,  value: 'relation client', label: 'et développement commercial' },
+                  { Icon: Briefcase,  value: '5',               label: 'Expériences' },
+                  { Icon: TrendingUp, value: 'Marketing',       label: 'Au Cœur Des Missions' },
+                  { Icon: Users,      value: 'Coordination',    label: 'De Projets Et D\'Équipes' },
+                  { Icon: Handshake,  value: 'Relation Client', label: 'Et Développement Commercial' },
                 ].map(({ Icon, value, label }, i) => (
                   <div key={i} className="flex flex-col items-center text-center gap-2 px-4 py-5">
                     <div className="w-11 h-11 rounded-2xl flex items-center justify-center"
@@ -256,8 +260,8 @@ export default function Experiences() {
               Envie d'échanger ?
             </p>
             <p className="text-black text-[13px] leading-relaxed">
-              Je suis toujours ouverte à de nouvelles opportunités et collaborations.<br />
-              Discutons de vos projets et voyons comment je peux vous accompagner.
+              Je suis ouvert à de nouvelles opportunités professionnelles.<br />
+              N'hésitez pas à me contacter pour échanger sur un poste.
             </p>
           </div>
 

@@ -209,7 +209,7 @@ export default function Apropos() {
                 <div className="flex items-center gap-5">
                   <MiniDonut percent={78} size={82} stroke={11} />
                   <div className="flex flex-col gap-0.5">
-                    <p className="text-[2.25rem] font-extrabold leading-none" style={{ color: '#1a4d2e' }}>+25</p>
+                    <p className="text-[2.25rem] font-extrabold leading-none" style={{ color: '#1a4d2e' }}>+15</p>
                     <p className="text-[12px] text-gray-500 font-medium leading-snug mt-1">
                       Projets menés<br />avec succès
                     </p>

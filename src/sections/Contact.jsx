@@ -21,7 +21,7 @@ const DISPOS = [
   },
   {
     icon: Users,
-    title: 'Ouvert à tous types de projets',
+    title: 'Ouvert à tous types de Contrats',
     desc: 'Collaboration, CDI, CDD, freelance ou mission ponctuelle.',
   },
 ]
@@ -65,17 +65,17 @@ export default function Contact() {
             <div>
               <h2 className="font-extrabold text-black leading-[1.1] tracking-tight"
                 style={{ fontSize: 'clamp(2rem, 2.8vw, 3rem)' }}>
-                Discutons de vos projets
+                Discutons d'une opportunité
               </h2>
               <p className="font-cursive mt-1"
                 style={{ fontSize: 'clamp(1.5rem, 2.2vw, 2.2rem)', color: '#1a4d2e' }}>
-                et construisons ensemble.
+                et construisons la suite ensemble.
               </p>
             </div>
 
             {/* Description */}
             <p className="text-black text-[14px] leading-relaxed max-w-sm">
-              Vous avez un projet, une opportunité ou simplement envie d'échanger ?
+              Vous recrutez, avez un poste à pourvoir ou souhaitez simplement échanger ?
               Je suis disponible et serai ravie de vous répondre dans les meilleurs délais.
             </p>
 
@@ -163,7 +163,7 @@ export default function Contact() {
                   name="message"
                   value={form.message}
                   onChange={handleChange}
-                  placeholder="Décrivez votre projet ou votre demande..."
+                  placeholder="N'hésitez pas à m'envoyer un message"
                   rows={5}
                   style={{ ...inputStyle, resize: 'none' }}
                 />
@@ -218,7 +218,7 @@ export default function Contact() {
               <div className="flex items-start gap-2">
                 <span className="text-4xl font-serif leading-none" style={{ color: '#1a4d2e' }}>"</span>
                 <p className="text-[13px] leading-snug" style={{ color: '#111' }}>
-                  Chaque projet commence<br />par une conversation.
+                  Chaque recrutement commence<br />par une conversation.
                 </p>
               </div>
               <p className="mt-1 text-[13px]" style={{ color: '#111' }}>
