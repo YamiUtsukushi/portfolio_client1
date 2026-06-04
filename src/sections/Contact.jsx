@@ -2,10 +2,10 @@ import { useState } from 'react'
 import { Mail, Phone, MapPin, Car, Send, Clock, Zap, MessageCircle, Users } from 'lucide-react'
 
 const COORDS = [
-  { icon: Mail,   label: 'Email',      value: 'davisen.ellapen.pro@gmail.com' },
-  { icon: Phone,  label: 'Téléphone',  value: '06 52 09 88 19' },
+  { icon: Mail,   label: 'Email',        value: 'davisen.ellapen.pro@gmail.com' },
+  { icon: Phone,  label: 'Téléphone',    value: '06 52 09 88 19' },
   { icon: MapPin, label: 'Localisation', value: 'Basé à Neuilly-sur-Seine' },
-  { icon: Car,    label: 'Permis',     value: 'Permis B' },
+  { icon: Car,    label: 'Permis',       value: 'Permis B' },
 ]
 
 const DISPOS = [
@@ -28,7 +28,7 @@ const DISPOS = [
 
 export default function Contact() {
   const [form, setForm] = useState({ nom: '', prenom: '', email: '', telephone: '', message: '' })
-  const [status, setStatus] = useState(null) // null | 'loading' | 'success' | 'error'
+  const [status, setStatus] = useState(null)
 
   const handleChange = (e) => setForm({ ...form, [e.target.name]: e.target.value })
 
@@ -68,7 +68,7 @@ export default function Contact() {
     <section id="contact" className="relative py-20 overflow-hidden"
       style={{ backgroundColor: '#FDFCF9' }}>
 
-      <div className="max-w-7xl mx-auto px-8">
+      <div className="max-w-7xl mx-auto px-5 md:px-8">
 
         {/* Breadcrumb */}
         <div className="flex items-center gap-2 mb-10">
@@ -76,32 +76,32 @@ export default function Contact() {
           <p className="text-[13px] font-medium text-black tracking-wide uppercase">Prendre contact</p>
         </div>
 
-        {/* ══ Grille 2 colonnes ══ */}
-        <div className="grid grid-cols-12 gap-12 mb-16">
+        {/* ══ Grille principale ══ */}
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-12 mb-16">
 
           {/* ── Colonne gauche ── */}
-          <div className="col-span-5 flex flex-col gap-6">
+          <div className="md:col-span-5 flex flex-col gap-6">
 
-            {/* Titre manuscrit */}
+            {/* Titre */}
             <div>
               <h2 className="font-extrabold text-black leading-[1.1] tracking-tight"
-                style={{ fontSize: 'clamp(2rem, 2.8vw, 3rem)' }}>
+                style={{ fontSize: 'clamp(1.75rem, 2.8vw, 3rem)' }}>
                 Discutons d'une opportunité
               </h2>
               <p className="font-cursive mt-1"
-                style={{ fontSize: 'clamp(1.5rem, 2.2vw, 2.2rem)', color: '#1a4d2e' }}>
+                style={{ fontSize: 'clamp(1.3rem, 2.2vw, 2.2rem)', color: '#1a4d2e' }}>
                 et construisons la suite ensemble.
               </p>
             </div>
 
             {/* Description */}
-            <p className="text-black text-[14px] leading-relaxed max-w-sm">
+            <p className="text-black text-[14px] leading-relaxed">
               Vous recrutez, avez un poste à pourvoir ou souhaitez simplement échanger ?
               Je suis disponible et serai ravie de vous répondre dans les meilleurs délais.
             </p>
 
             {/* Coordonnées */}
-            <div className="flex flex-col gap-3">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-1 gap-3">
               {COORDS.map(({ icon: Icon, label, value }) => (
                 <div key={label}
                   className="flex items-center gap-3 bg-white rounded-2xl px-4 py-3.5"
@@ -122,8 +122,8 @@ export default function Contact() {
           </div>
 
           {/* ── Colonne droite — Formulaire ── */}
-          <div className="col-span-7">
-            <form className="bg-white rounded-3xl p-8 flex flex-col gap-5"
+          <div className="md:col-span-7">
+            <form className="bg-white rounded-3xl p-5 md:p-8 flex flex-col gap-5"
               style={{ border: '1px solid #ede7d5', boxShadow: '0 4px 24px 0 rgba(26,77,46,0.07)' }}
               onSubmit={handleSubmit}>
 
@@ -133,12 +133,14 @@ export default function Contact() {
 
               {/* Feedback */}
               {status === 'success' && (
-                <div className="rounded-2xl px-4 py-3 text-[13px] font-semibold" style={{ backgroundColor: '#e6f4ec', color: '#1a6e3c' }}>
+                <div className="rounded-2xl px-4 py-3 text-[13px] font-semibold"
+                  style={{ backgroundColor: '#e6f4ec', color: '#1a6e3c' }}>
                   ✅ Message envoyé avec succès ! Je vous répondrai dans les meilleurs délais.
                 </div>
               )}
               {status === 'error' && (
-                <div className="rounded-2xl px-4 py-3 text-[13px] font-semibold" style={{ backgroundColor: '#fdecea', color: '#c0392b' }}>
+                <div className="rounded-2xl px-4 py-3 text-[13px] font-semibold"
+                  style={{ backgroundColor: '#fdecea', color: '#c0392b' }}>
                   ❌ Une erreur est survenue. Veuillez réessayer ou m'écrire directement par email.
                 </div>
               )}
@@ -147,62 +149,36 @@ export default function Contact() {
               <div className="grid grid-cols-2 gap-4">
                 <div className="flex flex-col gap-1.5">
                   <label className="text-[12px] font-semibold text-black">Nom</label>
-                  <input
-                    name="nom"
-                    value={form.nom}
-                    onChange={handleChange}
-                    placeholder="Votre nom"
-                    style={inputStyle}
-                  />
+                  <input name="nom" value={form.nom} onChange={handleChange}
+                    placeholder="Votre nom" style={inputStyle} />
                 </div>
                 <div className="flex flex-col gap-1.5">
                   <label className="text-[12px] font-semibold text-black">Prénom</label>
-                  <input
-                    name="prenom"
-                    value={form.prenom}
-                    onChange={handleChange}
-                    placeholder="Votre prénom"
-                    style={inputStyle}
-                  />
+                  <input name="prenom" value={form.prenom} onChange={handleChange}
+                    placeholder="Votre prénom" style={inputStyle} />
                 </div>
               </div>
 
               {/* Email + Téléphone */}
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div className="flex flex-col gap-1.5">
                   <label className="text-[12px] font-semibold text-black">Email</label>
-                  <input
-                    name="email"
-                    type="email"
-                    value={form.email}
-                    onChange={handleChange}
-                    placeholder="votre@email.com"
-                    style={inputStyle}
-                  />
+                  <input name="email" type="email" value={form.email} onChange={handleChange}
+                    placeholder="votre@email.com" style={inputStyle} />
                 </div>
                 <div className="flex flex-col gap-1.5">
                   <label className="text-[12px] font-semibold text-black">Téléphone</label>
-                  <input
-                    name="telephone"
-                    value={form.telephone}
-                    onChange={handleChange}
-                    placeholder="06 XX XX XX XX"
-                    style={inputStyle}
-                  />
+                  <input name="telephone" value={form.telephone} onChange={handleChange}
+                    placeholder="06 XX XX XX XX" style={inputStyle} />
                 </div>
               </div>
 
               {/* Message */}
               <div className="flex flex-col gap-1.5">
                 <label className="text-[12px] font-semibold text-black">Message</label>
-                <textarea
-                  name="message"
-                  value={form.message}
-                  onChange={handleChange}
+                <textarea name="message" value={form.message} onChange={handleChange}
                   placeholder="N'hésitez pas à m'envoyer un message"
-                  rows={5}
-                  style={{ ...inputStyle, resize: 'none' }}
-                />
+                  rows={5} style={{ ...inputStyle, resize: 'none' }} />
               </div>
 
               {/* Bouton */}
@@ -228,18 +204,17 @@ export default function Contact() {
         </div>
 
         {/* ══ Bannière disponibilité ══ */}
-        <div className="rounded-3xl p-6"
+        <div className="rounded-3xl p-5 md:p-6"
           style={{ backgroundColor: '#F5F4EE', border: '1px solid #e0ddd6' }}>
-          {/* Titre + ligne */}
           <h3 className="text-lg font-bold mb-1" style={{ color: '#1a4d2e' }}>
             Disponibilité &amp; réactivité
           </h3>
           <hr className="mb-5" style={{ borderColor: '#1a4d2e', width: '10%' }} />
 
-          {/* Colonnes */}
-          <div className="grid grid-cols-4 divide-x" style={{ divideColor: '#e0ddd6' }}>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 lg:gap-0 lg:divide-x"
+            style={{ borderColor: '#e0ddd6' }}>
             {DISPOS.map(({ icon: Icon, title, desc }) => (
-              <div key={title} className="flex items-start gap-3 px-5 first:pl-0">
+              <div key={title} className="flex items-start gap-3 lg:px-5 lg:first:pl-0">
                 <div className="w-9 h-9 rounded-xl flex items-center justify-center flex-shrink-0"
                   style={{ backgroundColor: '#fff', border: '1px solid #e0ddd6' }}>
                   <Icon size={16} style={{ color: '#1a4d2e' }} strokeWidth={1.5} />
@@ -251,8 +226,8 @@ export default function Contact() {
               </div>
             ))}
 
-            {/* Bloc citation */}
-            <div className="px-5 flex flex-col justify-center">
+            {/* Citation */}
+            <div className="lg:px-5 flex flex-col justify-center">
               <div className="flex items-start gap-2">
                 <span className="text-4xl font-serif leading-none" style={{ color: '#1a4d2e' }}>"</span>
                 <p className="text-[13px] leading-snug" style={{ color: '#111' }}>

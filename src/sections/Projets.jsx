@@ -54,7 +54,7 @@ function CarteProjet({ id, icon, categorie, titre, description, tags, github, li
 
         {/* Titre + Description + Tags */}
         <div className="flex-1 min-w-0">
-          <h3 className="font-bold text-[15px] leading-snug mb-3" style={{ color: '#111', display: '-webkit-box', WebkitLineClamp: 1, WebkitBoxOrient: 'vertical', overflow: 'hidden', maxWidth: 'calc(100% - 130px)' }}>{titre}</h3>
+          <h3 className="font-bold text-[15px] leading-snug mb-3 pr-2" style={{ color: '#111', display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical', overflow: 'hidden', maxWidth: 'calc(100% - 110px)' }}>{titre}</h3>
           <p className="text-[12px] leading-relaxed mb-3" style={{ color: '#111', display: '-webkit-box', WebkitLineClamp: 3, WebkitBoxOrient: 'vertical', overflow: 'hidden' }}>{description}</p>
           <div className="flex flex-wrap gap-1.5">
             {tags.map(tag => (
@@ -156,11 +156,11 @@ export default function Projets() {
   ]
 
   return (
-    <section id="projets" className="py-20 px-6" style={{ backgroundColor: '#fdfcf9' }}>
+    <section id="projets" className="py-20 px-5 md:px-6" style={{ backgroundColor: '#fdfcf9' }}>
       <div className="max-w-6xl mx-auto flex flex-col gap-10">
 
         {/* ── En-tête ── */}
-        <div className="flex flex-col md:flex-row gap-8 items-end">
+        <div className="flex flex-col md:flex-row gap-8 md:items-end">
 
           {/* Gauche — Titre */}
           <div className="flex-1">
@@ -170,7 +170,7 @@ export default function Projets() {
                 Projets
               </span>
             </div>
-            <h2 className="text-5xl font-extrabold leading-tight mb-4" style={{ color: '#1a1a1a' }}>
+            <h2 className="font-extrabold leading-tight mb-4" style={{ color: '#1a1a1a', fontSize: 'clamp(2rem, 4vw, 3rem)' }}>
               Mes Projets
             </h2>
             <p className="text-[14px] leading-relaxed max-w-md" style={{ color: '#555' }}>
@@ -181,29 +181,32 @@ export default function Projets() {
           </div>
 
           {/* Droite — Carte 5 KPIs */}
-          <div
-            className="relative rounded-3xl overflow-hidden px-6 py-6 flex gap-0"
-            style={{ backgroundColor: '#F5F4EE', border: '1px solid #e0ddd6', minWidth: '520px' }}
-          >
-            <DotsGrid />
-            {kpis.map(({ icon: Icon, count, label }, i) => (
-              <div
-                key={label}
-                className="flex-1 flex flex-col items-center gap-1 px-4"
-                style={i > 0 ? { borderLeft: '1px solid #ddd9cf' } : {}}
-              >
+          <div className="overflow-x-auto md:overflow-visible -mx-5 md:mx-0 px-5 md:px-0">
+            <div
+              className="relative rounded-3xl overflow-hidden px-6 py-6 flex gap-0"
+              style={{ backgroundColor: '#F5F4EE', border: '1px solid #e0ddd6', minWidth: '340px' }}
+            >
+              <DotsGrid />
+              {kpis.map(({ icon: Icon, count, label }, i) => (
                 <div
-                  className="w-11 h-11 rounded-xl flex items-center justify-center mb-1 cursor-pointer"
-                  style={{ backgroundColor: '#eceae1', transition: 'transform 0.3s ease' }}
-                  onMouseEnter={e => e.currentTarget.style.transform = 'scale(1.15)'}
-                  onMouseLeave={e => e.currentTarget.style.transform = 'scale(1)'}
+                  key={label}
+                  className="flex-1 flex flex-col items-center gap-1 px-3 md:px-4"
+                  style={i > 0 ? { borderLeft: '1px solid #ddd9cf' } : {}}
                 >
-                  <Icon size={22} style={{ color: '#1a4d2e' }} strokeWidth={1.5} />
+                  <div
+                    className="w-9 h-9 md:w-11 md:h-11 rounded-xl flex items-center justify-center mb-1 cursor-pointer"
+                    style={{ backgroundColor: '#eceae1', transition: 'transform 0.3s ease' }}
+                    onMouseEnter={e => e.currentTarget.style.transform = 'scale(1.15)'}
+                    onMouseLeave={e => e.currentTarget.style.transform = 'scale(1)'}
+                  >
+                    <Icon size={18} className="md:hidden" style={{ color: '#1a4d2e' }} strokeWidth={1.5} />
+                    <Icon size={22} className="hidden md:block" style={{ color: '#1a4d2e' }} strokeWidth={1.5} />
+                  </div>
+                  <span className="text-xl md:text-2xl font-extrabold" style={{ color: '#1a1a1a' }}>{count}</span>
+                  <span className="text-[9px] md:text-[10px] text-center leading-tight" style={{ color: '#111' }}>{label}</span>
                 </div>
-                <span className="text-2xl font-extrabold" style={{ color: '#1a1a1a' }}>{count}</span>
-                <span className="text-[10px] text-center leading-tight" style={{ color: '#111' }}>{label}</span>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
         </div>
 

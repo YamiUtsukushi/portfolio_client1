@@ -5,52 +5,33 @@ function GraphIllustration() {
   return (
     <svg viewBox="0 0 480 200" xmlns="http://www.w3.org/2000/svg" className="w-full">
       <rect width="480" height="200" fill="#F2F1E6" rx="16" />
-
-      {/* Mini carte blanche gauche avec icônes */}
       <rect x="16" y="24" width="72" height="152" rx="12" fill="white" />
-      {/* Icône camembert */}
       <circle cx="52" cy="64" r="16" fill="none" stroke="#6b9e7e" strokeWidth="3" />
       <path d="M52 48 L52 64 L64 56 Z" fill="#1a4d2e" />
-      {/* Icône courbe */}
       <path d="M38 104 Q44 96 52 100 Q60 104 66 96"
         fill="none" stroke="#1a4d2e" strokeWidth="2.5" strokeLinecap="round" />
-      {/* Icône liste */}
       <rect x="38" y="134" width="8" height="2.5" rx="1.2" fill="#6b9e7e" />
       <rect x="38" y="140" width="28" height="2.5" rx="1.2" fill="#6b9e7e" opacity="0.6" />
       <rect x="38" y="146" width="20" height="2.5" rx="1.2" fill="#6b9e7e" opacity="0.4" />
-
-      {/* Grand arc vert sapin — centre */}
       <path d="M 110 190 Q 110 60 230 60 L 230 190 Z" fill="#1a4d2e" />
-
-      {/* Grille de points — haut droite */}
       {Array.from({ length: 4 }).map((_, r) =>
         Array.from({ length: 5 }).map((_, c) => (
           <circle key={`${r}-${c}`} cx={310 + c * 14} cy={18 + r * 14} r="2"
             fill="#6b9e7e" opacity="0.4" />
         ))
       )}
-
-      {/* Cercle vert plein — coin haut droit */}
       <circle cx="458" cy="30" r="18" fill="#6b9e7e" opacity="0.8" />
-
-      {/* Donut chart — droite */}
       <circle cx="360" cy="100" r="38" fill="none" stroke="#e2f0e8" strokeWidth="12" />
       <circle cx="360" cy="100" r="38"
         fill="none" stroke="#1a4d2e" strokeWidth="12"
         strokeDasharray="170 240" strokeLinecap="round"
         transform="rotate(-90 360 100)" />
-
-      {/* Barres verticales — bar chart */}
       <rect x="416" y="120" width="10" height="60" rx="5" fill="#1a4d2e" opacity="0.8" />
       <rect x="432" y="100" width="10" height="80" rx="5" fill="#6b9e7e" opacity="0.7" />
       <rect x="448" y="130" width="10" height="50" rx="5" fill="#b9ddc8" opacity="0.6" />
-
-      {/* Barres horizontales — bas droite */}
       <rect x="280" y="158" width="90" height="6" rx="3" fill="#1a4d2e" opacity="0.7" />
       <rect x="280" y="170" width="65" height="6" rx="3" fill="#6b9e7e" opacity="0.5" />
       <rect x="280" y="182" width="42" height="6" rx="3" fill="#b9ddc8" opacity="0.4" />
-
-      {/* Coches vertes */}
       <circle cx="458" cy="158" r="10" fill="#1a4d2e" />
       <path d="M452 158 L456 162 L464 154" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" />
       <circle cx="458" cy="180" r="10" fill="#6b9e7e" opacity="0.6" />
@@ -59,7 +40,7 @@ function GraphIllustration() {
   )
 }
 
-/* ── Carte outil — layout horizontal ── */
+/* ── Carte outil ── */
 function OutilCard({ icon: Icon, title, text }) {
   return (
     <div className="bg-white rounded-2xl flex items-center gap-4 p-4"
@@ -91,7 +72,6 @@ function CompCol({ icon: Icon, title, items, summary }) {
   return (
     <div className="bg-white rounded-2xl flex flex-col gap-3 shadow-card h-full"
       style={{ border: '1px solid #ede7d5', padding: '0 1.25rem 1.25rem 1.25rem' }}>
-      {/* Icône + titre — centré, hauteur fixe pour aligner les bullet points */}
       <div className="flex items-center gap-3" style={{ minHeight: '80px' }}>
         <div className="w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0"
           style={{ backgroundColor: '#F2F1E6' }}>
@@ -204,7 +184,7 @@ export default function Competences() {
         )}
       </svg>
 
-      <div className="max-w-7xl mx-auto px-8">
+      <div className="max-w-7xl mx-auto px-5 md:px-8">
 
         {/* Breadcrumb */}
         <div className="flex items-center gap-2 mb-8">
@@ -212,16 +192,16 @@ export default function Competences() {
           <p className="text-[13px] font-medium text-gray-400">Compétences</p>
         </div>
 
-        {/* ══ Header — titre + carte graphique ══ */}
-        <div className="grid grid-cols-12 gap-8 mb-14 items-center">
+        {/* ══ Header ══ */}
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-8 mb-14 md:items-center">
 
-          {/* Colonne gauche — titre + description + boutons */}
-          <div className="col-span-5 flex flex-col gap-5">
+          {/* Titre + description + boutons */}
+          <div className="md:col-span-5 flex flex-col gap-5">
             <h2 className="font-extrabold text-sapin-900 leading-[1.1] tracking-tight"
-              style={{ fontSize: 'clamp(2.2rem, 3vw, 3.25rem)' }}>
+              style={{ fontSize: 'clamp(2rem, 3vw, 3.25rem)' }}>
               Mes Compétences<br />& Logiciels
             </h2>
-            <div className="flex flex-col gap-2 max-w-md">
+            <div className="flex flex-col gap-2">
               <p className="text-black text-[14.5px] font-medium leading-relaxed">
                 Un profil polyvalent à la croisée du marketing, de l'analyse, de la
                 coordination de projets et du pilotage opérationnel. J'utilise des outils
@@ -260,34 +240,30 @@ export default function Competences() {
             </div>
           </div>
 
-          {/* Colonne droite — illustration + KPIs dessous */}
-          <div className="col-span-7 flex flex-col gap-4">
-
-            {/* Illustration */}
+          {/* Illustration + KPIs */}
+          <div className="md:col-span-7 flex flex-col gap-4">
             <div className="rounded-3xl overflow-hidden shadow-card"
               style={{ border: '1px solid #ede7d5' }}>
               <GraphIllustration />
             </div>
-
-            {/* 3 KPIs sous l'illustration */}
-            <div className="grid grid-cols-3 gap-4">
+            <div className="grid grid-cols-3 gap-3 md:gap-4">
               {[
-                { icon: Layers, value: '6',    label: 'familles d\'outils' },
-                { icon: BarChart2, value: '15+', label: 'domaines de compétences' },
-                { icon: User,  value: null,   label: 'Profil polyvalent' },
+                { icon: Layers,    value: '6',    label: 'familles d\'outils' },
+                { icon: BarChart2, value: '15+',  label: 'domaines de compétences' },
+                { icon: User,      value: null,   label: 'Profil polyvalent' },
               ].map(({ icon: Icon, value, label }) => (
                 <div key={label}
-                  className="flex items-center gap-3 bg-white rounded-2xl px-4 py-3 shadow-card"
+                  className="flex items-center gap-2 md:gap-3 bg-white rounded-2xl px-3 md:px-4 py-3 shadow-card"
                   style={{ border: '1px solid #ede7d5' }}>
-                  <div className="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0 cursor-pointer"
+                  <div className="w-9 h-9 md:w-10 md:h-10 rounded-xl flex items-center justify-center flex-shrink-0 cursor-pointer"
                     style={{ backgroundColor: '#F2F1E6', transition: 'transform 0.3s ease' }}
                     onMouseEnter={e => e.currentTarget.style.transform = 'scale(1.15)'}
                     onMouseLeave={e => e.currentTarget.style.transform = 'scale(1)'}>
-                    <Icon size={18} style={{ color: '#1a4d2e' }} />
+                    <Icon size={16} style={{ color: '#1a4d2e' }} />
                   </div>
                   <div>
-                    {value && <p className="text-lg font-extrabold leading-none" style={{ color: '#1a4d2e' }}>{value}</p>}
-                    <p className="text-[12px] text-black font-medium leading-tight mt-0.5">{label}</p>
+                    {value && <p className="text-base md:text-lg font-extrabold leading-none" style={{ color: '#1a4d2e' }}>{value}</p>}
+                    <p className="text-[11px] md:text-[12px] text-black font-medium leading-tight mt-0.5">{label}</p>
                   </div>
                 </div>
               ))}
@@ -301,7 +277,7 @@ export default function Competences() {
             <span className="w-6 h-0.5 rounded" style={{ backgroundColor: '#1a4d2e' }} />
             <p className="text-[15px] font-extrabold" style={{ color: '#1a4d2e' }}>Logiciels & Outils</p>
           </div>
-          <div className="grid grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {OUTILS.map(o => <OutilCard key={o.title} {...o} />)}
           </div>
         </div>
@@ -312,55 +288,55 @@ export default function Competences() {
             <span className="w-6 h-0.5 rounded" style={{ backgroundColor: '#1a4d2e' }} />
             <p className="text-[15px] font-extrabold" style={{ color: '#1a4d2e' }}>Compétences Clés</p>
           </div>
-          <div className="grid grid-cols-3 gap-4 items-stretch">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 items-stretch">
             {COMPETENCES_COLS.map(c => <CompCol key={c.title} {...c} />)}
           </div>
         </div>
 
         {/* ══ Bannière CTA ══ */}
-        <div className="rounded-3xl flex items-center justify-between gap-6 overflow-hidden"
+        <div className="rounded-3xl overflow-hidden"
           style={{ backgroundColor: '#F5F4EE', border: '1px solid #ede7d5', boxShadow: '0 4px 24px 0 rgba(26,77,46,0.07)' }}>
+          <div className="flex flex-col md:flex-row md:items-center gap-4 md:gap-6 p-6 md:p-0">
 
-          {/* Illustration gauche */}
-          <div className="flex-shrink-0 relative" style={{ width: '140px', height: '90px' }}>
-            <svg viewBox="0 0 140 90" xmlns="http://www.w3.org/2000/svg" width="140" height="90">
-              {/* Quart de cercle vert sapin */}
-              <path d="M 0 90 Q 0 10 80 10 L 80 90 Z" fill="#1a4d2e" />
-              {/* Ovale vert sauge superposé */}
-              <ellipse cx="55" cy="72" rx="32" ry="28" fill="#6b9e7e" opacity="0.7" />
-              {/* Grille de points */}
-              {Array.from({ length: 4 }).map((_, r) =>
-                Array.from({ length: 5 }).map((_, c) => (
-                  <circle key={`${r}-${c}`} cx={88 + c * 11} cy={14 + r * 11} r="1.8"
-                    fill="#6b9e7e" opacity="0.4" />
-                ))
-              )}
-            </svg>
-          </div>
+            {/* Illustration — masquée sur mobile */}
+            <div className="hidden md:block flex-shrink-0" style={{ width: '140px', height: '90px' }}>
+              <svg viewBox="0 0 140 90" xmlns="http://www.w3.org/2000/svg" width="140" height="90">
+                <path d="M 0 90 Q 0 10 80 10 L 80 90 Z" fill="#1a4d2e" />
+                <ellipse cx="55" cy="72" rx="32" ry="28" fill="#6b9e7e" opacity="0.7" />
+                {Array.from({ length: 4 }).map((_, r) =>
+                  Array.from({ length: 5 }).map((_, c) => (
+                    <circle key={`${r}-${c}`} cx={88 + c * 11} cy={14 + r * 11} r="1.8"
+                      fill="#6b9e7e" opacity="0.4" />
+                  ))
+                )}
+              </svg>
+            </div>
 
-          {/* Texte centre */}
-          <div className="flex flex-col gap-1.5 flex-1 py-6">
-            <p className="font-extrabold text-[1.1rem] leading-snug" style={{ color: '#1a4d2e' }}>
-              Une expertise transversale, au service de projets concrets
-            </p>
-            <p className="text-black text-[13px] leading-relaxed">
-              Marketing, analyse, coordination, outils digitaux et performance :<br />
-              un socle complet pour accompagner les besoins de l'entreprise.
-            </p>
-          </div>
+            {/* Texte */}
+            <div className="flex flex-col gap-1.5 flex-1 md:py-6">
+              <p className="font-extrabold text-[1.1rem] leading-snug" style={{ color: '#1a4d2e' }}>
+                Une expertise transversale, au service de projets concrets
+              </p>
+              <p className="text-black text-[13px] leading-relaxed">
+                Marketing, analyse, coordination, outils digitaux et performance :<br />
+                un socle complet pour accompagner les besoins de l'entreprise.
+              </p>
+            </div>
 
-          {/* Bouton droite */}
-          <div className="flex-shrink-0" style={{ paddingRight: '6.5rem' }}>
-            <button
-              onClick={() => scrollTo('contact')}
-              className="inline-flex items-center gap-2 px-6 py-3 rounded-2xl font-semibold text-[14px] text-white active:scale-95 transition-all"
-              style={{ backgroundColor: '#1a4d2e' }}
-              onMouseEnter={e => e.currentTarget.style.backgroundColor = '#174018'}
-              onMouseLeave={e => e.currentTarget.style.backgroundColor = '#1a4d2e'}
-            >
-              <ArrowRight size={15} />
-              Me contacter
-            </button>
+            {/* Bouton */}
+            <div className="flex-shrink-0 md:pr-16">
+              <button
+                onClick={() => scrollTo('contact')}
+                className="inline-flex items-center gap-2 px-6 py-3 rounded-2xl font-semibold text-[14px] text-white active:scale-95 transition-all"
+                style={{ backgroundColor: '#1a4d2e' }}
+                onMouseEnter={e => e.currentTarget.style.backgroundColor = '#174018'}
+                onMouseLeave={e => e.currentTarget.style.backgroundColor = '#1a4d2e'}
+              >
+                <ArrowRight size={15} />
+                Me contacter
+              </button>
+            </div>
+
           </div>
         </div>
 

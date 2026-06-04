@@ -92,14 +92,16 @@ const CONTRAT_COLORS = {
   'Stage':      '#b9ddc8',
 }
 
-/* ── Logo placeholder ── */
-function LogoBox({ src, alt }) {
+/* ── Logo ── */
+function LogoBox({ src, alt, small = false }) {
+  const size = small ? 'w-14 h-14' : 'w-24 h-24'
   if (src) return (
-    <img src={src} alt={alt} className="w-24 h-24 rounded-2xl object-contain"
+    <img src={src} alt={alt}
+      className={`${size} rounded-2xl object-contain flex-shrink-0`}
       style={{ border: '1px solid #ede7d5', backgroundColor: '#fff' }} />
   )
   return (
-    <div className="w-24 h-24 rounded-2xl flex items-center justify-center flex-shrink-0 text-[11px] font-semibold"
+    <div className={`${size} rounded-2xl flex items-center justify-center flex-shrink-0 text-[11px] font-semibold`}
       style={{ backgroundColor: '#F2F1E6', border: '1px solid #ede7d5', color: '#aaa' }}>
       Logo
     </div>
@@ -111,57 +113,92 @@ function ExperienceCard({ exp }) {
   const color = CONTRAT_COLORS[exp.contrat] || '#1a4d2e'
 
   return (
-    <div className="relative flex items-start gap-5">
+    <div className="relative flex items-start gap-3 md:gap-5">
 
-      {/* Numéro — à gauche hors carte */}
-      <div className="w-9 h-9 rounded-full flex items-center justify-center flex-shrink-0 mt-5 text-white font-bold text-[15px] z-10"
+      {/* Numéro */}
+      <div className="w-8 h-8 md:w-9 md:h-9 rounded-full flex items-center justify-center flex-shrink-0 mt-4 md:mt-5 text-white font-bold text-[13px] md:text-[15px] z-10"
         style={{ backgroundColor: '#1a4d2e' }}>
         {exp.id}
       </div>
 
       {/* Carte */}
-      <div className="flex-1 flex items-start gap-5 rounded-2xl p-5"
+      <div className="flex-1 rounded-2xl p-4 md:p-5"
         style={{ backgroundColor: '#F5F4EE', border: '1px solid #e8e4d9' }}>
 
-        {/* Logo */}
-        <LogoBox src={exp.logoSrc} alt={exp.entreprise} />
+        {/* ── Layout mobile : colonne ── */}
+        <div className="flex flex-col gap-3 md:hidden">
 
-        {/* Infos poste */}
-        <div className="flex flex-col gap-1 flex-shrink-0" style={{ width: '190px' }}>
-          <p className="font-extrabold text-[15px] text-black leading-tight">{exp.poste}</p>
-          <div className="flex items-center gap-1.5 mt-0.5 flex-wrap">
-            <span className="text-[12px] font-bold" style={{ color }}>
-              {exp.contrat}
-            </span>
-            {exp.type && (
-              <>
-                <span className="text-[12px] text-black">·</span>
-                <span className="text-[12px] font-semibold text-black">{exp.type}</span>
-              </>
-            )}
-          </div>
-          <div className="flex items-start gap-1 mt-1.5">
-            <MapPin size={12} style={{ color: '#6b9e7e' }} className="flex-shrink-0 mt-0.5" />
-            <p className="text-[12px] text-black leading-snug">{exp.entreprise}, {exp.lieu}</p>
-          </div>
-        </div>
-
-        {/* Missions */}
-        <div className="flex flex-col gap-1.5 flex-1">
-          {exp.missions.map((m, i) => (
-            <div key={i} className="flex items-start gap-2">
-              <span className="mt-1.5 w-1.5 h-1.5 rounded-full flex-shrink-0" style={{ backgroundColor: '#1a4d2e' }} />
-              <p className="text-[12.5px] text-black leading-snug">{m}</p>
+          {/* Ligne 1 : logo + infos + date */}
+          <div className="flex items-start gap-3">
+            <LogoBox src={exp.logoSrc} alt={exp.entreprise} small />
+            <div className="flex flex-col gap-1 flex-1 min-w-0">
+              <p className="font-extrabold text-[14px] text-black leading-tight">{exp.poste}</p>
+              <div className="flex items-center gap-1.5 flex-wrap">
+                <span className="text-[12px] font-bold" style={{ color }}>{exp.contrat}</span>
+                {exp.type && (
+                  <>
+                    <span className="text-[12px] text-black">·</span>
+                    <span className="text-[12px] font-semibold text-black">{exp.type}</span>
+                  </>
+                )}
+              </div>
+              <div className="flex items-center gap-1 mt-0.5">
+                <MapPin size={11} style={{ color: '#6b9e7e' }} className="flex-shrink-0" />
+                <p className="text-[12px] text-black leading-snug">{exp.entreprise}, {exp.lieu}</p>
+              </div>
+              <div className="flex items-center gap-1.5 mt-1 self-start px-2.5 py-1 rounded-xl bg-white"
+                style={{ border: '1px solid #ede7d5' }}>
+                <Calendar size={11} style={{ color: '#1a4d2e' }} />
+                <p className="text-[11px] font-semibold" style={{ color: '#1a4d2e' }}>{exp.date}</p>
+              </div>
             </div>
-          ))}
+          </div>
+
+          {/* Ligne 2 : missions */}
+          <div className="flex flex-col gap-1.5 pt-2" style={{ borderTop: '1px solid #e0ddd6' }}>
+            {exp.missions.map((m, i) => (
+              <div key={i} className="flex items-start gap-2">
+                <span className="mt-1.5 w-1.5 h-1.5 rounded-full flex-shrink-0" style={{ backgroundColor: '#1a4d2e' }} />
+                <p className="text-[12px] text-black leading-snug">{m}</p>
+              </div>
+            ))}
+          </div>
         </div>
 
-        {/* Date */}
-        <div className="flex items-center gap-1.5 flex-shrink-0 self-start px-3 py-1.5 rounded-xl bg-white"
-          style={{ border: '1px solid #ede7d5' }}>
-          <Calendar size={12} style={{ color: '#1a4d2e' }} />
-          <p className="text-[12px] font-semibold" style={{ color: '#1a4d2e' }}>{exp.date}</p>
+        {/* ── Layout desktop : ligne ── */}
+        <div className="hidden md:flex items-start gap-5">
+          <LogoBox src={exp.logoSrc} alt={exp.entreprise} />
+          <div className="flex flex-col gap-1 flex-shrink-0" style={{ width: '190px' }}>
+            <p className="font-extrabold text-[15px] text-black leading-tight">{exp.poste}</p>
+            <div className="flex items-center gap-1.5 mt-0.5 flex-wrap">
+              <span className="text-[12px] font-bold" style={{ color }}>{exp.contrat}</span>
+              {exp.type && (
+                <>
+                  <span className="text-[12px] text-black">·</span>
+                  <span className="text-[12px] font-semibold text-black">{exp.type}</span>
+                </>
+              )}
+            </div>
+            <div className="flex items-start gap-1 mt-1.5">
+              <MapPin size={12} style={{ color: '#6b9e7e' }} className="flex-shrink-0 mt-0.5" />
+              <p className="text-[12px] text-black leading-snug">{exp.entreprise}, {exp.lieu}</p>
+            </div>
+          </div>
+          <div className="flex flex-col gap-1.5 flex-1">
+            {exp.missions.map((m, i) => (
+              <div key={i} className="flex items-start gap-2">
+                <span className="mt-1.5 w-1.5 h-1.5 rounded-full flex-shrink-0" style={{ backgroundColor: '#1a4d2e' }} />
+                <p className="text-[12.5px] text-black leading-snug">{m}</p>
+              </div>
+            ))}
+          </div>
+          <div className="flex items-center gap-1.5 flex-shrink-0 self-start px-3 py-1.5 rounded-xl bg-white"
+            style={{ border: '1px solid #ede7d5' }}>
+            <Calendar size={12} style={{ color: '#1a4d2e' }} />
+            <p className="text-[12px] font-semibold" style={{ color: '#1a4d2e' }}>{exp.date}</p>
+          </div>
         </div>
+
       </div>
     </div>
   )
@@ -175,7 +212,7 @@ export default function Experiences() {
     <section id="experiences" className="relative py-20 overflow-hidden"
       style={{ backgroundColor: '#FDFCF9' }}>
 
-      <div className="max-w-7xl mx-auto px-8">
+      <div className="max-w-7xl mx-auto px-5 md:px-8">
 
         {/* Breadcrumb */}
         <div className="flex items-center gap-2 mb-8">
@@ -184,40 +221,42 @@ export default function Experiences() {
         </div>
 
         {/* ══ Header ══ */}
-        <div className="grid grid-cols-12 gap-8 mb-12 items-center">
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-6 mb-12 md:items-center">
 
           {/* Titre + description */}
-          <div className="col-span-5 flex flex-col gap-4">
+          <div className="md:col-span-5 flex flex-col gap-4">
             <h2 className="font-extrabold leading-[1.05] tracking-tight"
-              style={{ color: '#1a4d2e', fontSize: 'clamp(2rem, 3vw, 3rem)', whiteSpace: 'nowrap' }}>
+              style={{ color: '#1a4d2e', fontSize: 'clamp(2rem, 3vw, 3rem)' }}>
               Mes Expériences
             </h2>
-            <p className="text-black text-[14.5px] font-medium leading-relaxed max-w-md">
+            <p className="text-black text-[14.5px] font-medium leading-relaxed">
               Un parcours polyvalent en marketing et en gestion de projet, au service de la stratégie,
               de la coordination, de l'expérience client et du développement commercial.
             </p>
           </div>
 
           {/* KPIs */}
-          <div className="col-span-7">
+          <div className="md:col-span-7">
             <div className="bg-white rounded-3xl overflow-hidden"
               style={{ border: '1px solid #ede7d5', boxShadow: '0 4px 24px 0 rgba(26,77,46,0.07)' }}>
-              <div className="grid grid-cols-4 divide-x" style={{ borderColor: '#ede7d5' }}>
+              <div className="grid grid-cols-2 md:grid-cols-4 md:divide-x" style={{ borderColor: '#ede7d5' }}>
                 {[
                   { Icon: Briefcase,  value: '5',               label: 'Expériences' },
                   { Icon: TrendingUp, value: 'Marketing',       label: 'Au Cœur Des Missions' },
                   { Icon: Users,      value: 'Coordination',    label: 'De Projets Et D\'Équipes' },
                   { Icon: Handshake,  value: 'Relation Client', label: 'Et Développement Commercial' },
                 ].map(({ Icon, value, label }, i) => (
-                  <div key={i} className="flex flex-col items-center text-center gap-2 px-4 py-5">
-                    <div className="w-11 h-11 rounded-2xl flex items-center justify-center cursor-pointer"
+                  <div key={i}
+                    className="flex flex-col items-center text-center gap-2 px-3 md:px-4 py-4 md:py-5"
+                    style={ i === 1 || i === 3 ? { borderLeft: '1px solid #ede7d5' } : {} }>
+                    <div className="w-10 h-10 md:w-11 md:h-11 rounded-2xl flex items-center justify-center cursor-pointer"
                       style={{ backgroundColor: '#F2F1E6', transition: 'transform 0.3s ease' }}
                       onMouseEnter={e => e.currentTarget.style.transform = 'scale(1.15)'}
                       onMouseLeave={e => e.currentTarget.style.transform = 'scale(1)'}>
-                      <Icon size={20} style={{ color: '#1a4d2e' }} strokeWidth={1.5} />
+                      <Icon size={18} md:size={20} style={{ color: '#1a4d2e' }} strokeWidth={1.5} />
                     </div>
-                    <p className="font-extrabold text-[14px] leading-tight" style={{ color: '#1a4d2e' }}>{value}</p>
-                    <p className="text-[11px] text-black leading-tight">{label}</p>
+                    <p className="font-extrabold text-[13px] md:text-[14px] leading-tight" style={{ color: '#1a4d2e' }}>{value}</p>
+                    <p className="text-[10px] md:text-[11px] text-black leading-tight">{label}</p>
                   </div>
                 ))}
               </div>
@@ -226,9 +265,8 @@ export default function Experiences() {
         </div>
 
         {/* ══ Timeline ══ */}
-        <div className="relative flex flex-col gap-5 mb-12">
-          {/* Ligne verte verticale reliant les numéros */}
-          <div className="absolute left-[17px] top-8 bottom-8 w-0.5 rounded-full"
+        <div className="relative flex flex-col gap-4 md:gap-5 mb-12">
+          <div className="absolute left-[15px] md:left-[17px] top-8 bottom-8 w-0.5 rounded-full"
             style={{ backgroundColor: '#1a4d2e', opacity: 0.2 }} />
           {EXPERIENCES.map(exp => (
             <ExperienceCard key={exp.id} exp={exp} />
@@ -236,49 +274,53 @@ export default function Experiences() {
         </div>
 
         {/* ══ Bannière bas ══ */}
-        <div className="rounded-3xl flex items-center justify-between gap-4 overflow-hidden"
+        <div className="rounded-3xl overflow-hidden"
           style={{ backgroundColor: '#F5F4EE', border: '1px solid #ede7d5' }}>
+          <div className="flex flex-col md:flex-row md:items-center gap-4 md:gap-4 p-5 md:p-0">
 
-          {/* Illustration gauche */}
-          <div className="flex-shrink-0" style={{ width: '130px', height: '88px' }}>
-            <svg viewBox="0 0 130 88" xmlns="http://www.w3.org/2000/svg" width="130" height="88">
-              <path d="M 0 88 Q 0 8 75 8 L 75 88 Z" fill="#1a4d2e" />
-              <ellipse cx="50" cy="70" rx="30" ry="26" fill="#6b9e7e" opacity="0.7" />
-              {Array.from({ length: 4 }).map((_, r) =>
-                Array.from({ length: 4 }).map((_, c) => (
-                  <circle key={`${r}-${c}`} cx={82 + c * 11} cy={12 + r * 11} r="1.8"
-                    fill="#6b9e7e" opacity="0.4" />
-                ))
-              )}
-            </svg>
-          </div>
+            {/* Illustration — masquée sur mobile */}
+            <div className="hidden md:block flex-shrink-0" style={{ width: '130px', height: '88px' }}>
+              <svg viewBox="0 0 130 88" xmlns="http://www.w3.org/2000/svg" width="130" height="88">
+                <path d="M 0 88 Q 0 8 75 8 L 75 88 Z" fill="#1a4d2e" />
+                <ellipse cx="50" cy="70" rx="30" ry="26" fill="#6b9e7e" opacity="0.7" />
+                {Array.from({ length: 4 }).map((_, r) =>
+                  Array.from({ length: 4 }).map((_, c) => (
+                    <circle key={`${r}-${c}`} cx={82 + c * 11} cy={12 + r * 11} r="1.8"
+                      fill="#6b9e7e" opacity="0.4" />
+                  ))
+                )}
+              </svg>
+            </div>
 
-          {/* Barre verte verticale */}
-          <div className="flex-shrink-0 w-1 rounded-full" style={{ backgroundColor: '#1a4d2e', height: '56px' }} />
+            {/* Barre verte — masquée sur mobile */}
+            <div className="hidden md:block flex-shrink-0 w-1 rounded-full"
+              style={{ backgroundColor: '#1a4d2e', height: '56px' }} />
 
-          {/* Texte */}
-          <div className="flex flex-col gap-1.5 flex-1 py-6">
-            <p className="font-extrabold text-[1.1rem] leading-snug" style={{ color: '#1a4d2e' }}>
-              Envie d'échanger ?
-            </p>
-            <p className="text-black text-[13px] leading-relaxed">
-              Je suis ouvert à de nouvelles opportunités professionnelles.<br />
-              N'hésitez pas à me contacter pour échanger sur un poste.
-            </p>
-          </div>
+            {/* Texte */}
+            <div className="flex flex-col gap-1.5 flex-1 md:py-6">
+              <p className="font-extrabold text-[1.1rem] leading-snug" style={{ color: '#1a4d2e' }}>
+                Envie d'échanger ?
+              </p>
+              <p className="text-black text-[13px] leading-relaxed">
+                Je suis ouvert à de nouvelles opportunités professionnelles.<br />
+                N'hésitez pas à me contacter pour échanger sur un poste.
+              </p>
+            </div>
 
-          {/* Bouton */}
-          <div className="flex-shrink-0" style={{ paddingRight: '6.5rem' }}>
-            <button
-              onClick={() => scrollTo('contact')}
-              className="inline-flex items-center gap-2 px-6 py-3 rounded-2xl font-semibold text-[14px] text-white active:scale-95 transition-all"
-              style={{ backgroundColor: '#1a4d2e' }}
-              onMouseEnter={e => e.currentTarget.style.backgroundColor = '#174018'}
-              onMouseLeave={e => e.currentTarget.style.backgroundColor = '#1a4d2e'}
-            >
-              <Send size={14} />
-              Me contacter
-            </button>
+            {/* Bouton */}
+            <div className="flex-shrink-0 md:pr-16">
+              <button
+                onClick={() => scrollTo('contact')}
+                className="inline-flex items-center gap-2 px-6 py-3 rounded-2xl font-semibold text-[14px] text-white active:scale-95 transition-all"
+                style={{ backgroundColor: '#1a4d2e' }}
+                onMouseEnter={e => e.currentTarget.style.backgroundColor = '#174018'}
+                onMouseLeave={e => e.currentTarget.style.backgroundColor = '#1a4d2e'}
+              >
+                <Send size={14} />
+                Me contacter
+              </button>
+            </div>
+
           </div>
         </div>
 
