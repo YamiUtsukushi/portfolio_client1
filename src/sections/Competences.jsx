@@ -219,7 +219,7 @@ export default function Competences() {
           <div className="col-span-5 flex flex-col gap-5">
             <h2 className="font-extrabold text-sapin-900 leading-[1.1] tracking-tight"
               style={{ fontSize: 'clamp(2.2rem, 3vw, 3.25rem)' }}>
-              Mes compétences<br />& logiciels
+              Mes Compétences<br />& Logiciels
             </h2>
             <div className="flex flex-col gap-2 max-w-md">
               <p className="text-black text-[14.5px] font-medium leading-relaxed">
@@ -279,8 +279,10 @@ export default function Competences() {
                 <div key={label}
                   className="flex items-center gap-3 bg-white rounded-2xl px-4 py-3 shadow-card"
                   style={{ border: '1px solid #ede7d5' }}>
-                  <div className="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0"
-                    style={{ backgroundColor: '#F2F1E6' }}>
+                  <div className="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0 cursor-pointer"
+                    style={{ backgroundColor: '#F2F1E6', transition: 'transform 0.3s ease' }}
+                    onMouseEnter={e => e.currentTarget.style.transform = 'scale(1.15)'}
+                    onMouseLeave={e => e.currentTarget.style.transform = 'scale(1)'}>
                     <Icon size={18} style={{ color: '#1a4d2e' }} />
                   </div>
                   <div>

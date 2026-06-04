@@ -1,5 +1,6 @@
 import { useParams, useNavigate } from 'react-router-dom'
-import { ArrowLeft, Target, Zap, BarChart2, FileText, Download, Send, Globe, ExternalLink } from 'lucide-react'
+import { useRef } from 'react'
+import { ArrowLeft, ArrowRight, Target, Zap, BarChart2, FileText, Download, Send, Globe, ExternalLink, ChevronLeft, ChevronRight } from 'lucide-react'
 import { PROJETS } from '../data/portfolio'
 
 function ImagePlaceholder({ initiale, couleur }) {
@@ -18,18 +19,37 @@ function ImagePlaceholder({ initiale, couleur }) {
 export default function ProjetDetail() {
   const { id } = useParams()
   const navigate = useNavigate()
-  const projet = PROJETS.find(p => p.id === id)
+  const touchStartX = useRef(null)
+
+  const currentIndex = PROJETS.findIndex(p => p.id === id)
+  const projet = PROJETS[currentIndex]
+  const prevProjet = currentIndex > 0 ? PROJETS[currentIndex - 1] : null
+  const nextProjet = currentIndex < PROJETS.length - 1 ? PROJETS[currentIndex + 1] : null
+
+  const goTo = (targetId) => {
+    navigate(`/projets/${targetId}`)
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+  }
+
+  const handleTouchStart = (e) => {
+    touchStartX.current = e.touches[0].clientX
+  }
+
+  const handleTouchEnd = (e) => {
+    if (touchStartX.current === null) return
+    const diff = touchStartX.current - e.changedTouches[0].clientX
+    if (Math.abs(diff) < 50) return // trop petit, pas un swipe
+    if (diff > 0 && nextProjet) goTo(nextProjet.id)   // swipe gauche → suivant
+    if (diff < 0 && prevProjet) goTo(prevProjet.id)   // swipe droit → précédent
+    touchStartX.current = null
+  }
 
   if (!projet) {
     return (
       <div className="min-h-screen flex items-center justify-center" style={{ backgroundColor: '#fdfcf9' }}>
         <div className="text-center">
           <p className="text-2xl font-bold mb-4" style={{ color: '#1a4d2e' }}>Projet introuvable</p>
-          <button
-            onClick={() => navigate(-1)}
-            className="px-6 py-2.5 rounded-2xl text-white font-semibold"
-            style={{ backgroundColor: '#1a4d2e' }}
-          >
+          <button onClick={() => navigate(-1)} className="px-6 py-2.5 rounded-2xl text-white font-semibold" style={{ backgroundColor: '#1a4d2e' }}>
             Retour aux projets
           </button>
         </div>
@@ -45,19 +65,66 @@ export default function ProjetDetail() {
   }
 
   return (
-    <div className="min-h-screen font-sans" style={{ backgroundColor: '#fdfcf9' }}>
+    <div
+      className="min-h-screen font-sans"
+      style={{ backgroundColor: '#fdfcf9' }}
+      onTouchStart={handleTouchStart}
+      onTouchEnd={handleTouchEnd}
+    >
 
       {/* ── Navbar ── */}
       <div className="sticky top-0 z-50 bg-white border-b" style={{ borderColor: '#ede7d5' }}>
-        <div className="max-w-6xl mx-auto px-6 py-4">
+        <div className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
           <button
-            onClick={() => navigate(-1)}
+            onClick={() => {
+              navigate('/')
+              setTimeout(() => {
+                document.getElementById('projets')?.scrollIntoView({ behavior: 'smooth' })
+              }, 100)
+            }}
             className="flex items-center gap-2 text-[13px] font-semibold hover:opacity-70 transition-opacity"
             style={{ color: '#1a4d2e' }}
           >
             <ArrowLeft size={16} />
             Retour aux projets
           </button>
+
+          {/* Navigation carousel */}
+          <div className="flex items-center gap-3">
+            <button
+              onClick={() => prevProjet && goTo(prevProjet.id)}
+              disabled={!prevProjet}
+              className="flex items-center gap-1.5 px-3 py-2 rounded-xl text-[12px] font-semibold transition-all"
+              style={{
+                border: '1px solid #ede7d5',
+                backgroundColor: prevProjet ? '#fff' : '#f5f4ee',
+                color: prevProjet ? '#1a4d2e' : '#ccc',
+                cursor: prevProjet ? 'pointer' : 'not-allowed',
+              }}
+            >
+              <ChevronLeft size={14} />
+              {prevProjet ? prevProjet.titre.slice(0, 20) + (prevProjet.titre.length > 20 ? '…' : '') : 'Début'}
+            </button>
+
+            <span className="text-[12px] font-medium" style={{ color: '#888' }}>
+              {currentIndex + 1} / {PROJETS.length}
+            </span>
+
+            <button
+              onClick={() => nextProjet && goTo(nextProjet.id)}
+              disabled={!nextProjet}
+              className="flex items-center gap-1.5 px-3 py-2 rounded-xl text-[12px] font-semibold transition-all"
+              style={{
+                border: '1px solid #ede7d5',
+                backgroundColor: nextProjet ? '#fff' : '#f5f4ee',
+                color: nextProjet ? '#1a4d2e' : '#ccc',
+                cursor: nextProjet ? 'pointer' : 'not-allowed',
+              }}
+            >
+              {nextProjet ? nextProjet.titre.slice(0, 20) + (nextProjet.titre.length > 20 ? '…' : '') : 'Fin'}
+              <ChevronRight size={14} />
+            </button>
+          </div>
         </div>
       </div>
 

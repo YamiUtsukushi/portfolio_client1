@@ -171,7 +171,7 @@ export default function Projets() {
               </span>
             </div>
             <h2 className="text-5xl font-extrabold leading-tight mb-4" style={{ color: '#1a1a1a' }}>
-              Mes projets
+              Mes Projets
             </h2>
             <p className="text-[14px] leading-relaxed max-w-md" style={{ color: '#555' }}>
               Voici une sélection de projets professionnels, personnels, académiques et de parcours scolaire
@@ -193,8 +193,10 @@ export default function Projets() {
                 style={i > 0 ? { borderLeft: '1px solid #ddd9cf' } : {}}
               >
                 <div
-                  className="w-11 h-11 rounded-xl flex items-center justify-center mb-1"
-                  style={{ backgroundColor: '#eceae1' }}
+                  className="w-11 h-11 rounded-xl flex items-center justify-center mb-1 cursor-pointer"
+                  style={{ backgroundColor: '#eceae1', transition: 'transform 0.3s ease' }}
+                  onMouseEnter={e => e.currentTarget.style.transform = 'scale(1.15)'}
+                  onMouseLeave={e => e.currentTarget.style.transform = 'scale(1)'}
                 >
                   <Icon size={22} style={{ color: '#1a4d2e' }} strokeWidth={1.5} />
                 </div>

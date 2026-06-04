@@ -190,7 +190,7 @@ export default function Experiences() {
           <div className="col-span-5 flex flex-col gap-4">
             <h2 className="font-extrabold leading-[1.05] tracking-tight"
               style={{ color: '#1a4d2e', fontSize: 'clamp(2rem, 3vw, 3rem)', whiteSpace: 'nowrap' }}>
-              Mes expériences
+              Mes Expériences
             </h2>
             <p className="text-black text-[14.5px] font-medium leading-relaxed max-w-md">
               Un parcours polyvalent en marketing et en gestion de projet, au service de la stratégie,
@@ -210,8 +210,10 @@ export default function Experiences() {
                   { Icon: Handshake,  value: 'Relation Client', label: 'Et Développement Commercial' },
                 ].map(({ Icon, value, label }, i) => (
                   <div key={i} className="flex flex-col items-center text-center gap-2 px-4 py-5">
-                    <div className="w-11 h-11 rounded-2xl flex items-center justify-center"
-                      style={{ backgroundColor: '#F2F1E6' }}>
+                    <div className="w-11 h-11 rounded-2xl flex items-center justify-center cursor-pointer"
+                      style={{ backgroundColor: '#F2F1E6', transition: 'transform 0.3s ease' }}
+                      onMouseEnter={e => e.currentTarget.style.transform = 'scale(1.15)'}
+                      onMouseLeave={e => e.currentTarget.style.transform = 'scale(1)'}>
                       <Icon size={20} style={{ color: '#1a4d2e' }} strokeWidth={1.5} />
                     </div>
                     <p className="font-extrabold text-[14px] leading-tight" style={{ color: '#1a4d2e' }}>{value}</p>

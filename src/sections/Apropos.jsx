@@ -57,8 +57,10 @@ function InfoBadge({ icon: Icon, title, sub, trend }) {
   return (
     <div className="flex items-center gap-3 bg-white rounded-2xl px-4"
       style={{ paddingTop: '1.9rem', paddingBottom: '1.9rem' }}>
-      <div className="w-12 h-12 rounded-xl bg-white flex items-center justify-center flex-shrink-0"
-        style={{ backgroundColor: '#f0f7f2' }}>
+      <div className="w-12 h-12 rounded-xl bg-white flex items-center justify-center flex-shrink-0 cursor-pointer"
+        style={{ backgroundColor: '#f0f7f2', transition: 'transform 0.3s ease' }}
+        onMouseEnter={e => e.currentTarget.style.transform = 'scale(1.15)'}
+        onMouseLeave={e => e.currentTarget.style.transform = 'scale(1)'}>
         <Icon size={24} style={{ color: '#1a4d2e' }} strokeWidth={1.5} />
       </div>
       <div className="flex-1 min-w-0">
@@ -79,7 +81,10 @@ function InfoBadge({ icon: Icon, title, sub, trend }) {
 function DefinitCol({ icon: Icon, title, desc }) {
   return (
     <div className="flex flex-col items-center text-center px-3 py-2">
-      <div className="w-14 h-14 rounded-2xl bg-cream-200 flex items-center justify-center mb-3">
+      <div className="w-14 h-14 rounded-2xl bg-cream-200 flex items-center justify-center mb-3 cursor-pointer"
+        style={{ transition: 'transform 0.3s ease' }}
+        onMouseEnter={e => e.currentTarget.style.transform = 'scale(1.15)'}
+        onMouseLeave={e => e.currentTarget.style.transform = 'scale(1)'}>
         <Icon size={24} style={{ color: '#1a4d2e' }} strokeWidth={1.5} />
       </div>
       {/* Hauteur fixe pour aligner tous les titres */}
@@ -143,8 +148,8 @@ export default function Apropos() {
             <h2 className="font-extrabold text-sapin-900 leading-[1.1] tracking-tight"
               style={{ fontSize: 'clamp(2.4rem, 3.2vw, 3.5rem)' }}>
               Coordonner,<br />
-              structurer,<br />
-              faire avancer.
+              Structurer,<br />
+              Faire Avancer.
             </h2>
 
             <div className="flex flex-col gap-2 max-w-[420px]">

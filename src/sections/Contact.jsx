@@ -106,8 +106,10 @@ export default function Contact() {
                 <div key={label}
                   className="flex items-center gap-3 bg-white rounded-2xl px-4 py-3.5"
                   style={{ border: '1px solid #ede7d5', boxShadow: '0 2px 8px 0 rgba(26,77,46,0.05)' }}>
-                  <div className="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0"
-                    style={{ backgroundColor: '#F2F1E6' }}>
+                  <div className="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0 cursor-pointer"
+                    style={{ backgroundColor: '#F2F1E6', transition: 'transform 0.3s ease' }}
+                    onMouseEnter={e => e.currentTarget.style.transform = 'scale(1.15)'}
+                    onMouseLeave={e => e.currentTarget.style.transform = 'scale(1)'}>
                     <Icon size={18} style={{ color: '#1a4d2e' }} strokeWidth={1.5} />
                   </div>
                   <div>

@@ -218,12 +218,17 @@ export default function Hero() {
         }}
       >
         <p className="font-bold text-sapin-900 mb-5" style={{ fontSize: '1.3125rem' }}>
-          Compétences clés
+          Compétences Clés
         </p>
         <div className="grid grid-cols-4 divide-x divide-cream-300">
           {COMPETENCES.map(({ label, Icon }) => (
             <div key={label} className="flex flex-col items-center gap-3 px-6 first:pl-0 last:pr-0">
-              <div className="w-14 h-14 rounded-2xl bg-cream-200 flex items-center justify-center">
+              <div
+                className="w-14 h-14 rounded-2xl bg-cream-200 flex items-center justify-center cursor-pointer"
+                style={{ transition: 'transform 0.3s ease' }}
+                onMouseEnter={e => e.currentTarget.style.transform = 'scale(1.15)'}
+                onMouseLeave={e => e.currentTarget.style.transform = 'scale(1)'}
+              >
                 <Icon size={26} style={{ color: '#1a4d2e' }} strokeWidth={1.5} />
               </div>
               <span
